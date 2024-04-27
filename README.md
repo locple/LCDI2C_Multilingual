@@ -3,7 +3,7 @@ Arduino library for printing multilingual UTF-8 strings (French, Spanish, Finnis
 
 Unicode strings might need to be normalized in NFC beforehand for better compatibility.
 
-This library is continued from LiquidCrystal_I2C_UTF8 library.
+This library is continued from LiquidCrystal_I2C_UTF8 library, with adding more languages and support for more concurrent I2C LCDs.
 
 ## Hardware Required
 *Similar to LiquidCrystal_I2C*
@@ -107,13 +107,15 @@ There three cases:
 - Print using both ROM's language and customized language created in CGRAM
 ### Classes for printing the language built in LCD's ROM
 *Include one of the following files depending on LCD's ROM type*
-|                  | ROM_Standard_JP.h | ROM_Standard_EU.h |  ROM_Standard_RU.h | ROM_Surenoo_RU.h |
-|:----------------:|:-----------------:|:-----------------:|:------------------:|:----------------:|
-| **For LCD chips**|**HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A**|**AIP31066W2, ST7066-0B**|**HD44780UA02**|**Surenoo SLC series (Russian)**|
-|    **Russian**   |        :x:        |        :x:        |**Capital letters only**|:heavy_check_mark:|
-|  Special symbols | ÷ √ ∞ → ← | ± ≈ ² ³ × ÷ ≤ ≥ √ ∞ ↵ ↑ ↓ → ← | ↵ ↑ ↓ → ← ≤ ≥ ± ² ³ × ÷ ∞ | ↵ ↑ → ↓ ← × |
-|   Greek symbols  |Σ Ω α β δ ε θ μ π ρ|Σ Ω α β γ δ ε η θ μ π ρ σ ψ ω|Σ Ω α β δ ε θ μ π σ ω|       |
-| Currency symbols |          ¥        |       ¢ £ ¥       |        ¢ £ ¥       |        ¢ £       |
+|         Class        |   LCDI2C_Generic  |   LCDI2C_Katakana |    LCDI2C_Latin   |   LCDI2C_RussianLatin  |  LCDI2C_Russian  |
+|:--------------------:|:-----------------:|:-----------------:|:-----------------:|:----------------------:|:----------------:|
+|   **For LCD chips**  |**HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A**|**HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A**|**AIP31066W2, ST7066-0B**|**HD44780UA02**|**Surenoo SLC series (Russian)**|
+|      **English**     | :heavy_check_mark:| :heavy_check_mark:| :heavy_check_mark:|   :heavy_check_mark:   |:heavy_check_mark:|
+|**Japanese Katakana** |        :x:        | :heavy_check_mark:|        :x:        |           :x:          |        :x:       |
+|      **Russian**     |        :x:        |        :x:        |        :x:        |**Capital letters only**|:heavy_check_mark:|
+|**European languages**|        :x:        |        :x:        | :heavy_check_mark:|   :heavy_check_mark:   |        :x:       |
+|  Special symbols |        ÷ → ←      |                   |       ± ≈ ² ³     |                    |                  |
+| Currency symbols |          ¥        |          ¥        |       ¢ £ ¥       |        ¢ £ ¥       |        ¢ £       |
 
 ### Class for printing both the language built in LCD's ROM and customized symbols in LCD's CGRAM
 *Include one of the following files depending on character set needed*
