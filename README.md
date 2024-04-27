@@ -1,5 +1,7 @@
-# LCDI2C_Multilingual
-An Arduino library extended from LiquidCrystal_I2C to print Vietnamese, Russian, or specific symbols (in UTF-8) to LCDs like LCD1602A, LCD2004A.
+# LiquidCrystal_I2C_Multilingual
+Arduino library for printing multilingual UTF-8 strings (French, Spanish, Finnish, Russian, Vietnamese, Katakana, etc.) and specific symbols to LCD1602, LCD2004, LCD0801, etc. via I2C (PCF8574).
+
+Unicode strings might need to be normalized in NFC beforehand for better compatibility.
 
 ## Hardware Required
 *Similar to LiquidCrystal_I2C*
@@ -10,7 +12,7 @@ An Arduino library extended from LiquidCrystal_I2C to print Vietnamese, Russian,
   *For convenience, you can buy LCD with an I2C adapter soldered instead doing it yourself.*
 - **I2C adapter** using PCF8574 chip having 1x16-pin or 2x8-pin interface to LCD.
 
-  *Refer to table below (for Surenoo LCD series) to find the right I2C adapter:*
+  *Refer to table below to find the I2C adapter having right pin type for the LCD:*
 
 |   LCD  | 0801 | 0802 | 1601 | 1602 | 1604 | 2002 | 2004 | 2402 | 4002 | 4004 |
 |:------:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
@@ -49,23 +51,25 @@ For I2C PCF8574 using **NXP** chip: *(most likely **0x3F**)*
 Otherwise, use I2C scanning program to detect I2C address:
 https://learn.adafruit.com/scanning-i2c-addresses/arduino
 
-## Write Demo: print a Vietnamese string
+## Print temperature and price in Finnish to LCD1602 (*Latin ROM*)
 ```C++
-#include <LCDI2C_Vietnamese.h>            // Vietnamese customized characters on generic ROM (Japanese ROM)
+#include <LCDI2C_Multilingual.h>
 
-LCDI2C_Vietnamese lcd(0x27, 16, 2);       // I2C address = 0x27; Display columns = 16, rows = 2
+LCDI2C_Latin_Symbols lcd(0x27, 16, 2);    // I2C address = 0x27; Display columns = 16, rows = 2
 
 void setup() {
   lcd.init();                             // Initialize the LCD
   lcd.backlight();                        // Turn on the LCD backlight
-  lcd.println("Cao đẳng Công thương Việt Nam");
+
+  lcd2.println("Lämpötila:  25°C");
+  lcd2.println("Yhteensä:   €500");
 }
 void loop() {}
 ```
 
-## Write Demo: print a long Russian string
+## Print a long Russian string to LCD2004 (*Russian ROM*)
 ```C++
-#include <LCDI2C_Russian.h>               // Russian on Russian ROM
+#include <LCDI2C_Multilingual.h>
 
 LCDI2C_Russian lcd(0x27, 20, 4);          // I2C address = 0x27; Display columns = 20, rows = 4
 
@@ -78,33 +82,38 @@ void setup() {
 void loop() {}
 ```
 
-## Write Demo: print temperature and humidity values
+## Print a Vietnamese string to LCD1602 using customized characters
 ```C++
-#include <LCDI2C_Vietnamese.h>            // Vietnamese customized characters on generic ROM (Japanese ROM)
+#include <LCDI2C_Multilingual.h>
 
-LiquidCrystal_I2C_Viet lcd(0x27, 16, 2);  // I2C address = 0x27; Display columns = 16, rows = 2
+LCDI2C_Vietnamese lcd(0x27, 16, 2);       // I2C address = 0x27; Display columns = 16, rows = 2
 
 void setup() {
   lcd.init();                             // Initialize the LCD
   lcd.backlight();                        // Turn on the LCD backlight
-
-  float temp = 25.78;
-  float humi = 9.431;
-  char buff[7];
-  sprintf(buff, "%.1f", temp);
-  lcd.print("Nhiệt độ: "); lcd.print(buff); lcd.println("°C");
-  lcd.println("Độ ẩm β:   " + String(humi, 2) + '%');
+  lcd.println("Cao đẳng Công thương Việt Nam");
 }
 void loop() {}
 ```
 
 *See more demos in examples folder.*
 
-## What header files to include
-2 header files required to be included in the program.
-### First header file
-For main class, customized character set and UTF-8 character mapping to it.
+## What class used to print
+There three cases:
+- Print using ROM's language only
+- Print using both ROM's language and customized symbols created in CGRAM
+- Print using both ROM's language and customized language created in CGRAM
+### Classes for printing the language built in LCD's ROM
+*Include one of the following files depending on LCD's ROM type*
+|                  | ROM_Standard_JP.h | ROM_Standard_EU.h |  ROM_Standard_RU.h | ROM_Surenoo_RU.h |
+|:----------------:|:-----------------:|:-----------------:|:------------------:|:----------------:|
+| **For LCD chips**|**HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A**|**AIP31066W2, ST7066-0B**|**HD44780UA02**|**Surenoo SLC series (Russian)**|
+|    **Russian**   |        :x:        |        :x:        |**Capital letters only**|:heavy_check_mark:|
+|  Special symbols | ÷ √ ∞ → ← | ± ≈ ² ³ × ÷ ≤ ≥ √ ∞ ↵ ↑ ↓ → ← | ↵ ↑ ↓ → ← ≤ ≥ ± ² ³ × ÷ ∞ | ↵ ↑ → ↓ ← × |
+|   Greek symbols  |Σ Ω α β δ ε θ μ π ρ|Σ Ω α β γ δ ε η θ μ π ρ σ ψ ω|Σ Ω α β δ ε θ μ π σ ω|       |
+| Currency symbols |          ¥        |       ¢ £ ¥       |        ¢ £ ¥       |        ¢ £       |
 
+### Class for printing both the language built in LCD's ROM and customized symbols in LCD's CGRAM
 *Include one of the following files depending on character set needed*
 | Character set |  LCDI2C_UTF8.h   |       LCDI22C_Viet.h      |
 |:-------------:|:----------------:|:-------------------------:|
@@ -114,17 +123,7 @@ For main class, customized character set and UTF-8 character mapping to it.
 > :warning: Due to CGRAM limit, maximum of 8 different Vietnamese letters with diacritics can be printed on a screen, otherwise diacritics removed.
 > But it's usually adequate to print full of Vietnamese text on LCD0801, LCD0802, LCD1602.
 
-### Second header file
-For mapping UTF-8 character set to LCD ROM's built-in character set.
-
-*Include one of the following files depending on LCD's ROM type*
-|                  | ROM_Standard_JP.h | ROM_Standard_EU.h |  ROM_Standard_RU.h | ROM_Surenoo_RU.h |
-|:----------------:|:-----------------:|:-----------------:|:------------------:|:----------------:|
-| **For LCD chips**|**HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A**|**AIP31066W2, ST7066-0B**|**HD44780UA02**|**Surenoo SLC series (Russian)**|
-|    **Russian**   |        :x:        |        :x:        |**Capital letters only**|:heavy_check_mark:|
-|  Special symbols | ÷ √ ∞ → ← | ± ≈ ² ³ × ÷ ≤ ≥ √ ∞ ↵ ↑ ↓ → ← | ↵ ↑ ↓ → ← ≤ ≥ ± ² ³ × ÷ ∞ | ↵ ↑ → ↓ ← × |
-|   Greek symbols  |Σ Ω α β δ ε θ μ π ρ|Σ Ω α β γ δ ε η θ μ π ρ σ ψ ω|Σ Ω α β δ ε θ μ π σ ω|       |
-| Currency symbols |          ¥        |       ¢ £ ¥       |        ¢ £ ¥       |        ¢ £       |
+### Class for printing both the language available in LCD's ROM and customized language in LCD's CGRAM
 
 ## Function print()
 - `print(text)`: print UTF-8 text (String or char[]) to LCD
