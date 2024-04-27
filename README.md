@@ -3,6 +3,8 @@ Arduino library for printing multilingual UTF-8 strings (French, Spanish, Finnis
 
 Unicode strings might need to be normalized in NFC beforehand for better compatibility.
 
+This library is continued from LiquidCrystal_I2C_UTF8 library.
+
 ## Hardware Required
 *Similar to LiquidCrystal_I2C*
 - **MCU dev board**: Arduino /Uno/Mini/Nano/Micro, ESP8266, ESP32, WeMos LOLIN D1 Mini, WeMos LOLIN D32, ...
