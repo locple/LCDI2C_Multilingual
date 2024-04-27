@@ -1,0 +1,65 @@
+################################################
+# Syntax Coloring Map For LiquidCrystal_I2C_Multilingual
+################################################
+
+################################################
+# Datatypes (KEYWORD1)
+################################################
+LCDI2C_Generic				KEYWORD1
+LCDI2C_Latin				KEYWORD1
+LCDI2C_Russian				KEYWORD1
+LCDI2C_Vietnamese			KEYWORD1
+LCDI2C_Katakana				KEYWORD1
+LCDI2C_RussianLatin			KEYWORD1
+LCDI2C_Symbols				KEYWORD1
+LCDI2C_Katakana_Symbols		KEYWORD1
+LCDI2C_Katakana_Vietnamese	KEYWORD1
+LCDI2C_Latin_Symbols		KEYWORD1
+LCDI2C_Latin_Vietnamese		KEYWORD1
+LCDI2C_Russian_Symbols		KEYWORD1
+LCDI2C_Russian_Vietnamese	KEYWORD1
+LCDI2C_RussianLatin_Symbols	KEYWORD1
+LCDI2C_RussianLatin_Vietnamese	KEYWORD1
+LCDI2C_Multilingual			KEYWORD1
+LCDI2C						KEYWORD1
+LiquidCrystal_I2C			KEYWORD1
+
+################################################
+# Methods and Functions (KEYWORD2)
+################################################
+init				KEYWORD2
+begin				KEYWORD2
+clear				KEYWORD2
+home				KEYWORD2
+setCursor			KEYWORD2
+getCursorColumn		KEYWORD2
+getCursorRow		KEYWORD2
+noBacklight			KEYWORD2
+backlight			KEYWORD2
+createChar			KEYWORD2
+print				KEYWORD2
+println				KEYWORD2
+blink_on			KEYWORD2
+blink_off			KEYWORD2
+setBacklight		KEYWORD2
+write				KEYWORD2
+setLongestWordLength	KEYWORD2
+setAutoNewLine		KEYWORD2
+
+################################################
+# Instances (KEYWORD2)
+################################################
+lcd					KEYWORD2
+lcd1				KEYWORD2
+lcd2				KEYWORD2
+lcd3				KEYWORD2
+
+################################################
+# Constants (LITERAL1)
+################################################
+CustomizedLetterNum		LITERAL1
+CustomizedLetters		LITERAL1
+ROMLetterNum			LITERAL1
+ROMLetters				LITERAL1
+MinExcludedChar			LITERAL1
+MaxExcludedChar			LITERAL1
