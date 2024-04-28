@@ -123,7 +123,7 @@ void loop() {}
 
 *See more demos in examples folder.*
 
-![Triple I2C LCDs multilingual](https://drive.google.com/file/d/1-HPBN2Lx0c0ceopMzQip7X5zRuLuiqgI/view?usp=sharing "Triple I2C LCDs multilingual")
+![Triple I2C LCDs multilingual](https://i.ibb.co/hYsgdCB/Triple-LCDs.jpg "3 I2C LCDs multilingual")
 
 
 ## What class to use?
@@ -131,7 +131,7 @@ There are three cases:
 - Print using ROM's language only
 - Print using both ROM's language and customized symbols created in CGRAM
 - Print using both ROM's language and customized language created in CGRAM
-### Classes for printing the language built in LCD's ROM
+### Classes for the language built in LCD's ROM
 *Choose the following classes depending on LCD's ROM type*
 |       Base class      |    **English**   |   **Japanese**   |    **Russian**   |**European languages**| **Symbols** |**Supported LCD chips**|
 |:---------------------:|:----------------:|:----------------:|:----------------:|:--------------------:|:-----------:|:---------------------:|
@@ -141,7 +141,7 @@ There are three cases:
 |**LCDI2C_RussianLatin**|:heavy_check_mark:|       :x:        |   Capital only   |  :heavy_check_mark:  |¢ £ ¥ Latin-1 supplement|      HD44780UA02     |
 |   **LCDI2C_Russian**  |:heavy_check_mark:|       :x:        |:heavy_check_mark:|          :x:         |    ¢ £      |Surenoo SLC series (Russian) |
 
-### Classes for printing both the language built in LCD's ROM and customized symbols from LCD's CGRAM
+### Classes for the language built in ROM and customized symbols created in CGRAM
 *Choose the following classes if you need specific symbols (° €) in addition to the above base class*
 |              Class            |        Base class     | Additional symbols |
 |:-----------------------------:|:---------------------:|:------------------:|
@@ -151,8 +151,8 @@ There are three cases:
 |**LCDI2C_RussianLatin_Symbols**|**LCDI2C_RussianLatin**|Degree (°), Euro (€)|
 |   **LCDI2C_Russian_Symbols**  |   **LCDI2C_Russian**  |Degree (°), Euro (€)|
 
-### Classes for printing both the language available in LCD's ROM and customized language in LCD's CGRAM
-*Choose the following classes if you need support for Vietnamese (not built in ROM) in addition to the above base class*
+### Classes for the language built in ROM and the customized language created in CGRAM
+*Choose the following classes if you need support for Vietnamese (not available in any ROM) in addition to the above base class*
 |               Class              |        Base class     |    Vietnamese    |
 |:--------------------------------:|:---------------------:|:----------------:|
 |       **LCDI2C_Vietnamese**      |   **LCDI2C_Generic**  |:heavy_check_mark:|
