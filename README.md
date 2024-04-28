@@ -79,7 +79,7 @@ void setup() {
   lcd.init();                             // Initialize the LCD
   lcd.backlight();                        // Turn on the LCD backlight
   lcd.print("Подмосковные вечера - одна из самых популярных советских песен, её исполняли \
-известные эстрадные и академические певцы, хоры и оркестры в СССР и за рубежом.", 3);
+известные эстрадные и академические певцы, хоры и оркестры в СССР и за рубежом.", 3); // wait 3s till next screen
 }
 void loop() {}
 ```
@@ -123,6 +123,9 @@ void loop() {}
 
 *See more demos in examples folder.*
 
+![Triple I2C LCDs multilingual](https://drive.google.com/file/d/1-HPBN2Lx0c0ceopMzQip7X5zRuLuiqgI/view?usp=sharing "Triple I2C LCDs multilingual")
+
+
 ## What class to use?
 There are three cases:
 - Print using ROM's language only
@@ -135,7 +138,7 @@ There are three cases:
 |   **LCDI2C_Generic**  |:heavy_check_mark:|       :x:        |       :x:        |          :x:         |   ¥ ÷ → ←   |HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC series|
 |  **LCDI2C_Katakana**  |:heavy_check_mark:|:heavy_check_mark:|       :x:        |          :x:         |      ¥      |HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC series (Japanese)|
 |    **LCDI2C_Latin**   |:heavy_check_mark:|       :x:        |       :x:        |  :heavy_check_mark:  |¢ £ ¥ ± ≈ ² ³|AIP31066W2, ST7066-0B, Surenoo SLC series (European)|
-|**LCDI2C_RussianLatin**|:heavy_check_mark:|       :x:        |   Capital only   |  :heavy_check_mark:  |¢ £ ¥ Latin-1 supp|      HD44780UA02     |
+|**LCDI2C_RussianLatin**|:heavy_check_mark:|       :x:        |   Capital only   |  :heavy_check_mark:  |¢ £ ¥ Latin-1 supplement|      HD44780UA02     |
 |   **LCDI2C_Russian**  |:heavy_check_mark:|       :x:        |:heavy_check_mark:|          :x:         |    ¢ £      |Surenoo SLC series (Russian) |
 
 ### Classes for printing both the language built in LCD's ROM and customized symbols from LCD's CGRAM
