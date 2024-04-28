@@ -123,7 +123,7 @@ void loop() {}
 
 *See more demos in examples folder.*
 
-## What class used to print
+## What class to use?
 There are three cases:
 - Print using ROM's language only
 - Print using both ROM's language and customized symbols created in CGRAM
@@ -132,11 +132,11 @@ There are three cases:
 *Choose the following classes depending on LCD's ROM type*
 |       Base class      |    **English**   |   **Japanese**   |    **Russian**   |**European languages**| **Symbols** |**Supported LCD chips**|
 |:---------------------:|:----------------:|:----------------:|:----------------:|:--------------------:|:-----------:|:---------------------:|
-|   **LCDI2C_Generic**  |:heavy_check_mark:|       :x:        |       :x:        |          :x:         |   ¥ ÷ → ←   |HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC|
-|  **LCDI2C_Katakana**  |:heavy_check_mark:|:heavy_check_mark:|       :x:        |          :x:         |      ¥      |HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC (Japanese)|
-|    **LCDI2C_Latin**   |:heavy_check_mark:|       :x:        |       :x:        |  :heavy_check_mark:  |¢ £ ¥ ± ≈ ² ³|AIP31066W2, ST7066-0B, Surenoo SLC (European)|
-|**LCDI2C_RussianLatin**|:heavy_check_mark:|       :x:        |   capital only   |  :heavy_check_mark:  |¢ £ ¥ Latin-1|      HD44780UA02     |
-|   **LCDI2C_Russian**  |:heavy_check_mark:|       :x:        |:heavy_check_mark:|          :x:         |    ¢ £      |Surenoo SLC (Russian) |
+|   **LCDI2C_Generic**  |:heavy_check_mark:|       :x:        |       :x:        |          :x:         |   ¥ ÷ → ←   |HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC series|
+|  **LCDI2C_Katakana**  |:heavy_check_mark:|:heavy_check_mark:|       :x:        |          :x:         |      ¥      |HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC series (Japanese)|
+|    **LCDI2C_Latin**   |:heavy_check_mark:|       :x:        |       :x:        |  :heavy_check_mark:  |¢ £ ¥ ± ≈ ² ³|AIP31066W2, ST7066-0B, Surenoo SLC series (European)|
+|**LCDI2C_RussianLatin**|:heavy_check_mark:|       :x:        |   Capital only   |  :heavy_check_mark:  |¢ £ ¥ Latin-1 supp|      HD44780UA02     |
+|   **LCDI2C_Russian**  |:heavy_check_mark:|       :x:        |:heavy_check_mark:|          :x:         |    ¢ £      |Surenoo SLC series (Russian) |
 
 ### Classes for printing both the language built in LCD's ROM and customized symbols from LCD's CGRAM
 *Choose the following classes if you need specific symbols (° €) in addition to the above base class*
