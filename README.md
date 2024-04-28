@@ -132,13 +132,13 @@ There are three cases:
 - Print using both ROM's language and customized language created in CGRAM
 ### Classes for the language built in LCD's ROM
 *Choose the following classes depending on LCD's ROM type*
-|         *Class*       |    **English**   |   **Japanese**   |    **Russian**   |**European languages**| **Symbols** |**Supported LCD chips**|
-|:----------------------|:----------------:|:----------------:|:----------------:|:--------------------:|:-----------:|:---------------------:|
-|   **LCDI2C_Generic**  |:heavy_check_mark:|       :x:        |       :x:        |          :x:         |**¥** ÷ → ←  |HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC series|
-|  **LCDI2C_Katakana**  |:heavy_check_mark:|:heavy_check_mark:|       :x:        |          :x:         |    **¥**    |HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC series (Japanese)|
-|    **LCDI2C_Latin**   |:heavy_check_mark:|       :x:        |       :x:        |  :heavy_check_mark:  |**¢ £ ¥** ± ≈ ² ³|AIP31066W2, ST7066-0B, Surenoo SLC series (European)|
-|**LCDI2C_RussianLatin**|:heavy_check_mark:|       :x:        |   Capital only   |  :heavy_check_mark:  |**¢ £ ¥** Latin-1 symbols|      HD44780UA02     |
-|   **LCDI2C_Russian**  |:heavy_check_mark:|       :x:        |:heavy_check_mark:|          :x:         |   **¢ £**   |Surenoo SLC series (Russian) |
+|         *Class*       |     *English*    |    *Japanese*    |     *Russian*    |*European languages*|  *Symbols*  | *Supported LCD chips* |
+|:----------------------|:----------------:|:----------------:|:----------------:|:------------------:|:-----------:|:---------------------:|
+|   **LCDI2C_Generic**  |:heavy_check_mark:|       :x:        |       :x:        |         :x:        |**¥** ÷ → ←  |HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC series|
+|  **LCDI2C_Katakana**  |:heavy_check_mark:|:heavy_check_mark:|       :x:        |         :x:        |    **¥**    |HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC series (Japanese)|
+|    **LCDI2C_Latin**   |:heavy_check_mark:|       :x:        |       :x:        | :heavy_check_mark: |**¢ £ ¥** ± ≈ ² ³|AIP31066W2, ST7066-0B, Surenoo SLC series (European)|
+|**LCDI2C_RussianLatin**|:heavy_check_mark:|       :x:        |   Capital only   | :heavy_check_mark: |**¢ £ ¥** Latin-1 symbols|      HD44780UA02     |
+|   **LCDI2C_Russian**  |:heavy_check_mark:|       :x:        |:heavy_check_mark:|         :x:        |   **¢ £**   |Surenoo SLC series (Russian) |
 
 ### Classes for the language built in ROM + customized symbols created in CGRAM
 *Choose the following classes if you need specific symbols (° €) in addition to the above base class*
@@ -152,13 +152,13 @@ There are three cases:
 
 ### Classes for the language built in ROM + the customized language created in CGRAM
 *Choose the following classes if you need support for Vietnamese (not available in any ROM) in addition to the above base class*
-|              *Class*             |*All characters from*|  *Vietnamese + symbols*  |
-|:---------------------------------|:--------------------|:----------------:|
-|       **LCDI2C_Vietnamese**      |    LCDI2C_Generic   |:heavy_check_mark: **° ₫**|
-|  **LCDI2C_Katakana_Vietnamese**  |   LCDI2C_Katakana   |:heavy_check_mark: **° ₫**|
-|   **LCDI2C_Latin_Vietnamese**    |    LCDI2C_Latin     |:heavy_check_mark: **° ₫**|
-|**LCDI2C_RussianLatin_Vietnamese**| LCDI2C_RussianLatin |:heavy_check_mark: **° ₫**|
-|   **LCDI2C_Russian_Vietnamese**  |    LCDI2C_Russian   |:heavy_check_mark: **° ₫**|
+|              *Class*             |*All characters from*|   *Vietnamese*   |*Additional symbols*|
+|:---------------------------------|:--------------------|:----------------:|:------------------:|
+|       **LCDI2C_Vietnamese**      |    LCDI2C_Generic   |:heavy_check_mark:|       **° ₫**      |
+|  **LCDI2C_Katakana_Vietnamese**  |   LCDI2C_Katakana   |:heavy_check_mark:|       **° ₫**      |
+|   **LCDI2C_Latin_Vietnamese**    |    LCDI2C_Latin     |:heavy_check_mark:|       **° ₫**      |
+|**LCDI2C_RussianLatin_Vietnamese**| LCDI2C_RussianLatin |:heavy_check_mark:|       **° ₫**      |
+|   **LCDI2C_Russian_Vietnamese**  |    LCDI2C_Russian   |:heavy_check_mark:|       **° ₫**      |
 
 > :warning: Due to CGRAM size limit, maximum of 8 different Vietnamese letters with diacritics can be printed on a screen, otherwise diacritics removed.
 > However it's usually adequate to print full of Vietnamese text on LCD0801, LCD0802, LCD1602.
