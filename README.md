@@ -103,7 +103,7 @@ void loop() {}
 #include <LCDI2C_Multilingual.h>
 
 LCDI2C_Katakana_Vietnamese lcd1(0x27, 20, 4); // I2C address: 0x27; Display size: 20x4
-LCDI2C_Vietnamese lcd2(0x26, 16, 2);          // I2C address: 0x26; Display size: 16x2
+LCDI2C_Latin_Vietnamese lcd2(0x26, 16, 2);    // I2C address: 0x26; Display size: 16x2
 
 void setup() {
   lcd1.init(); lcd1.backlight();
@@ -114,8 +114,7 @@ void setup() {
   lcd1.println("2. ジャパネセ「カタカナ」");
   lcd1.println("3. Tiếng Việt");
 
-  lcd2.println("1. English");
-  lcd2.println("2. Tiếng Việt");
+  lcd2.println("Türkçe là tiếng Thổ Nhĩ Kỳ);
 }
 
 void loop() {}
@@ -141,7 +140,7 @@ There are three cases:
 |**LCDI2C_RussianLatin**|:heavy_check_mark:|       :x:        |   Capital only   |  :heavy_check_mark:  |**¢ £ ¥** Latin-1 supplement|      HD44780UA02     |
 |   **LCDI2C_Russian**  |:heavy_check_mark:|       :x:        |:heavy_check_mark:|          :x:         |   **¢ £**   |Surenoo SLC series (Russian) |
 
-### Classes for the language built in ROM and customized symbols created in CGRAM
+### Classes for the language built in ROM + customized symbols created in CGRAM
 *Choose the following classes if you need specific symbols (° €) in addition to the above base class*
 |             *Class*           |*All characters from*|*Additional symbols*|
 |:------------------------------|:--------------------|:------------------:|
@@ -151,7 +150,7 @@ There are three cases:
 |**LCDI2C_RussianLatin_Symbols**| LCDI2C_RussianLatin |       **° €**      |
 |   **LCDI2C_Russian_Symbols**  |    LCDI2C_Russian   |       **° €**      |
 
-### Classes for the language built in ROM and the customized language created in CGRAM
+### Classes for the language built in ROM + the customized language created in CGRAM
 *Choose the following classes if you need support for Vietnamese (not available in any ROM) in addition to the above base class*
 |              *Class*             |*All characters from*|   *Vietnamese*   |
 |:---------------------------------|:--------------------|:----------------:|
