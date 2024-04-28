@@ -57,7 +57,7 @@ https://learn.adafruit.com/scanning-i2c-addresses/arduino
 ```C++
 #include <LCDI2C_Multilingual.h>
 
-LCDI2C_Latin_Symbols lcd(0x27, 16, 2);    // I2C address = 0x27; Display columns = 16, rows = 2
+LCDI2C_Latin_Symbols lcd(0x27, 16, 2);    // I2C address = 0x27; LCD = Surenoo SLC1602A (European version)
 
 void setup() {
   lcd.init();                             // Initialize the LCD
@@ -73,7 +73,7 @@ void loop() {}
 ```C++
 #include <LCDI2C_Multilingual.h>
 
-LCDI2C_Russian lcd(0x27, 20, 4);          // I2C address = 0x27; Display columns = 20, rows = 4
+LCDI2C_Russian lcd(0x27, 20, 4);          // I2C address = 0x27; LCD = Surenoo SLC2004A (Russian version)
 
 void setup() {
   lcd.init();                             // Initialize the LCD
@@ -88,7 +88,7 @@ void loop() {}
 ```C++
 #include <LCDI2C_Multilingual.h>
 
-LCDI2C_Vietnamese lcd(0x27, 16, 2);       // I2C address = 0x27; Display columns = 16, rows = 2
+LCDI2C_Vietnamese lcd(0x27, 16, 2);       // I2C address = 0x27; LCD1602A (16 columns, 2 rows)
 
 void setup() {
   lcd.init();                             // Initialize the LCD
@@ -102,8 +102,8 @@ void loop() {}
 ```C++
 #include <LCDI2C_Multilingual.h>
 
-LCDI2C_Katakana_Vietnamese lcd1(0x27, 20, 4); // I2C address: 0x27; Display size: 20x4
-LCDI2C_Latin_Vietnamese lcd2(0x26, 16, 2);    // I2C address: 0x26; Display size: 16x2
+LCDI2C_Katakana_Vietnamese lcd1(0x27, 20, 4); // I2C address: 0x27; LCD = Surenoo SLC2004A (Japanese)
+LCDI2C_Latin_Vietnamese lcd2(0x26, 16, 2);    // I2C address: 0x26; LCD = Surenoo SLC1602A (European)
 
 void setup() {
   lcd1.init(); lcd1.backlight();
@@ -111,10 +111,10 @@ void setup() {
 
   lcd1.println("Select language:");
   lcd1.println("1. English");
-  lcd1.println("2. ジャパネセ「カタカナ」");
-  lcd1.println("3. Tiếng Việt");
+  lcd1.println("2. ジャパネセ「カタカナ」");    // Japanese Kana
+  lcd1.println("3. Tiếng Việt");              // Vietnamese
 
-  lcd2.println("Türkçe là tiếng Thổ Nhĩ Kỳ);
+  lcd2.println("Türkçe là tiếng Thổ Nhĩ Kỳ);  // Turkish + Vietnamese
 }
 
 void loop() {}
