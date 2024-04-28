@@ -106,18 +106,18 @@ There three cases:
 - Print using both ROM's language and customized symbols created in CGRAM
 - Print using both ROM's language and customized language created in CGRAM
 ### Classes for printing the language built in LCD's ROM
-*Include one of the following files depending on LCD's ROM type*
-|         Class        |   LCDI2C_Generic  |   LCDI2C_Katakana |    LCDI2C_Latin   |   LCDI2C_RussianLatin  |  LCDI2C_Russian  |
-|:--------------------:|:-----------------:|:-----------------:|:-----------------:|:----------------------:|:----------------:|
-|   **For LCD chips**  |**HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A**|**HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A**|**AIP31066W2, ST7066-0B**|**HD44780UA02**|**Surenoo SLC series (Russian)**|
-|      **English**     | :heavy_check_mark:| :heavy_check_mark:| :heavy_check_mark:|   :heavy_check_mark:   |:heavy_check_mark:|
-|**Japanese Katakana** |        :x:        | :heavy_check_mark:|        :x:        |           :x:          |        :x:       |
-|      **Russian**     |        :x:        |        :x:        |        :x:        |**Capital letters only**|:heavy_check_mark:|
-|**European languages**|        :x:        |        :x:        | :heavy_check_mark:|   :heavy_check_mark:   |        :x:       |
-|  Special symbols |        ÷ → ←      |                   |       ± ≈ ² ³     |                    |                  |
-| Currency symbols |          ¥        |          ¥        |       ¢ £ ¥       |        ¢ £ ¥       |        ¢ £       |
+*Instantiate the following classes depending on LCD's ROM type*
+|          Class        | **LCDI2C_Generic**|**LCDI2C_Katakana**|  **LCDI2C_Latin** | **LCDI2C_RussianLatin**|**LCDI2C_Russian**|
+|:---------------------:|:-----------------:|:-----------------:|:-----------------:|:----------------------:|:----------------:|
+|**Supported LCD chips**|HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A|HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A|AIP31066W2, ST7066-0B|HD44780UA02|Surenoo SLC series (Russian)|
+|      **English**      | :heavy_check_mark:| :heavy_check_mark:| :heavy_check_mark:|   :heavy_check_mark:   |:heavy_check_mark:|
+| **Japanese Katakana** |        :x:        | :heavy_check_mark:|        :x:        |           :x:          |        :x:       |
+|      **Russian**      |        :x:        |        :x:        |        :x:        |**capital letters only**|:heavy_check_mark:|
+| **European languages**|        :x:        |        :x:        | :heavy_check_mark:|   :heavy_check_mark:   |        :x:       |
+|     Special symbols   |        ÷ → ←      |                   |       ± ≈ ² ³     | almost Latin-1 symbols |                  |
+|    Currency symbols   |         ¥         |         ¥         |       ¢ £ ¥       |         ¢ £ ¥          |        ¢ £       |
 
-### Class for printing both the language built in LCD's ROM and customized symbols in LCD's CGRAM
+### Classes for printing both the language built in LCD's ROM and customized symbols in LCD's CGRAM
 *Include one of the following files depending on character set needed*
 | Character set |  LCDI2C_UTF8.h   |       LCDI22C_Viet.h      |
 |:-------------:|:----------------:|:-------------------------:|
@@ -127,7 +127,7 @@ There three cases:
 > :warning: Due to CGRAM limit, maximum of 8 different Vietnamese letters with diacritics can be printed on a screen, otherwise diacritics removed.
 > But it's usually adequate to print full of Vietnamese text on LCD0801, LCD0802, LCD1602.
 
-### Class for printing both the language available in LCD's ROM and customized language in LCD's CGRAM
+### Classes for printing both the language available in LCD's ROM and customized language in LCD's CGRAM
 
 ## Function print()
 - `print(text)`: print UTF-8 text (String or char[]) to LCD
