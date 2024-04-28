@@ -57,7 +57,7 @@ https://learn.adafruit.com/scanning-i2c-addresses/arduino
 ```C++
 #include <LCDI2C_Multilingual.h>
 
-LCDI2C_Latin_Symbols lcd(0x27, 16, 2);    // I2C address = 0x27; LCD = Surenoo SLC1602A (European version)
+LCDI2C_Latin_Symbols lcd(0x27, 16, 2);    // I2C address = 0x27; LCD = Surenoo SLC1602A (European)
 
 void setup() {
   lcd.init();                             // Initialize the LCD
@@ -73,13 +73,13 @@ void loop() {}
 ```C++
 #include <LCDI2C_Multilingual.h>
 
-LCDI2C_Russian lcd(0x27, 20, 4);          // I2C address = 0x27; LCD = Surenoo SLC2004A (Russian version)
+LCDI2C_Russian lcd(0x27, 20, 4);          // I2C address = 0x27; LCD = Surenoo SLC2004A (Russian)
 
 void setup() {
   lcd.init();                             // Initialize the LCD
   lcd.backlight();                        // Turn on the LCD backlight
   lcd.print("Подмосковные вечера - одна из самых популярных советских песен, её исполняли \
-известные эстрадные и академические певцы, хоры и оркестры в СССР и за рубежом.", 3); // wait 3s till next screen
+известные эстрадные и академические певцы, хоры и оркестры в СССР и за рубежом.", 3); // wait 3s
 }
 void loop() {}
 ```
