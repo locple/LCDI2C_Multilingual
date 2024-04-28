@@ -109,13 +109,13 @@ There three cases:
 *Instantiate the following classes depending on LCD's ROM type*
 |          Class        | **LCDI2C_Generic**|**LCDI2C_Katakana**|  **LCDI2C_Latin** | **LCDI2C_RussianLatin**|**LCDI2C_Russian**|
 |:---------------------:|:-----------------:|:-----------------:|:-----------------:|:----------------------:|:----------------:|
-|**Supported LCD chips**|HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A|HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A|AIP31066W2, ST7066-0B|HD44780UA02|Surenoo SLC series (Russian)|
+|**Supported LCD chips**|HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC|HD44780UA00, AIP31066, KS0066F00, KS0066F04, SPLC780D, ST7066-0A, Surenoo SLC (Japanese)|AIP31066W2, ST7066-0B, Surenoo SLC (European)|HD44780UA02|Surenoo SLC (Russian)|
 |      **English**      | :heavy_check_mark:| :heavy_check_mark:| :heavy_check_mark:|   :heavy_check_mark:   |:heavy_check_mark:|
 | **Japanese Katakana** |        :x:        | :heavy_check_mark:|        :x:        |           :x:          |        :x:       |
-|      **Russian**      |        :x:        |        :x:        |        :x:        |**capital letters only**|:heavy_check_mark:|
+|      **Russian**      |        :x:        |        :x:        |        :x:        |  capital letters only  |:heavy_check_mark:|
 | **European languages**|        :x:        |        :x:        | :heavy_check_mark:|   :heavy_check_mark:   |        :x:       |
-|     Special symbols   |        ÷ → ←      |                   |       ± ≈ ² ³     | almost Latin-1 symbols |                  |
-|    Currency symbols   |         ¥         |         ¥         |       ¢ £ ¥       |         ¢ £ ¥          |        ¢ £       |
+|  **Special symbols**  |        ÷ → ←      |                   |       ± ≈ ² ³     |   all Latin-1 symbols  |                  |
+|  **Currency symbols** |         ¥         |         ¥         |       ¢ £ ¥       |         ¢ £ ¥          |        ¢ £       |
 
 ### Classes for printing both the language built in LCD's ROM and customized symbols in LCD's CGRAM
 *Include one of the following files depending on character set needed*
