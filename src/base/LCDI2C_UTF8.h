@@ -28,7 +28,8 @@ public:
   uint8_t   getCursorRow() { return cursorRow; }
   void		setLongestWordLength(uint8_t);
   void      setAutoNewLine(bool);
-  using     LCDI2C::write;
+  using     LCDI2C::write;                // Original write method
+  using     LCDI2C::print;                // For printing numbers
   // Print methods with: moving to new line when reaching last column, pausing some times before next page
   size_t    print(const char[], int pause);
   size_t    print(const String &, int pause = 0);
