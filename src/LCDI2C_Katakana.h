@@ -64,18 +64,19 @@ protected:
         diacritic = KanaDiacriticCharacters[idx].diacritic;
       }
 
+    // Look for Latin Fullwidth character
+    if (code >= 0xFF01 && code <= 0xFF5D)     
+      return code - 0xFEE0;				        // Convert Latin Fullwidth to Latin ASCII
+
     // Base Katakana character (without diacritic) or customized characters (looking in ROM first)
     ord = getROMCharacter(code);
     if (ord == NOTFOUND)                        // Character ready in ROM?
-      if (code >= 0xFF01 && code <= 0xFF5D)     // Latin Fullwidth character
-        return code - 0xFEE0;				    // Convert Latin Fullwidth to Latin ASCII
-      else
-        if (customizedLanguage != NULL) {           // Customized character in CGRAM ?
-          ord = customizedLanguage->getCharacter(code, cursorColumn, cursorRow);
-          if (ord != NOTFOUND)
-            return (uint16_t) ord;              // Customized character
-        } else
-		  return (uint16_t) '*';                  // Unknown character
+      if (customizedLanguage != NULL) {         // Customized character in CGRAM ?
+        ord = customizedLanguage->getCharacter(code, cursorColumn, cursorRow);
+        if (ord != NOTFOUND)
+          return (uint16_t) ord;                // Customized character
+      } else
+        return (uint16_t) '*';                  // Unknown character
 
     if (diacritic == 0)
       return (uint16_t) ord;
