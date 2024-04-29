@@ -28,14 +28,27 @@ public:
   uint8_t   getCursorRow() { return cursorRow; }
   void		setLongestWordLength(uint8_t);
   void      setAutoNewLine(bool);
-  using     LCDI2C::write;                // Original write method
-  using     LCDI2C::print;                // For printing numbers
+  using     LCDI2C::write;                // Use the parent's method
   // Print methods with: moving to new line when reaching last column, pausing some times before next page
   size_t    print(const char[], int pause);
   size_t    print(const String &, int pause = 0);
   size_t    println(const char[], int pause = 0);
   size_t    println(const String &, int pause = 0);
   size_t    println(void);
+  size_t    print(char);
+  size_t    print(unsigned char, int = DEC);
+  size_t    print(int, int = DEC);
+  size_t    print(unsigned int, int = DEC);
+  size_t    print(long, int = DEC);
+  size_t    print(unsigned long, int = DEC);
+  size_t    print(double, int = 2);
+  size_t    println(char);
+  size_t    println(unsigned char, int = DEC);
+  size_t    println(int, int = DEC);
+  size_t    println(unsigned int, int = DEC);
+  size_t    println(long, int = DEC);
+  size_t    println(unsigned long, int = DEC);
+  size_t    println(double, int = 2);
 
 private:
   uint8_t   longestWordLength;

@@ -15,6 +15,64 @@
 #include "LCDI2C_UTF8.h"
 #include "LCDI2C_Custom.h"
 
+LCDI2C_UTF8::LCDI2C_UTF8(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows)
+  : LCDI2C(lcd_addr, lcd_cols, lcd_rows),
+  colNum(lcd_cols), rowNum(lcd_rows),
+  cursorColumn(0), cursorRow(0), nextWordEndCol(0),
+  minExcludedChar(0), maxExcludedChar(0),
+  longestWordLength(0), autoNewLine(true), customizedLanguage(NULL) {}
+
+void LCDI2C_UTF8::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
+  colNum = cols;
+  rowNum = lines;
+  if (longestWordLength == 0 || longestWordLength > colNum)
+    checkNextWordCol = 0;       // check next word from first column
+  else
+    checkNextWordCol = colNum - longestWordLength;
+  LCDI2C::begin(cols, lines, dotsize);
+}
+
+void LCDI2C_UTF8::clear() {
+  if (customizedLanguage != NULL)
+    customizedLanguage->clearLetters(); // Clear customized characters
+  cursorColumn = 0; cursorRow = 0;
+  nextWordEndCol = checkNextWordCol;
+  LCDI2C::clear();
+}
+
+void LCDI2C_UTF8::home() {
+  cursorColumn = 0; cursorRow = 0;
+  nextWordEndCol = checkNextWordCol;
+  LCDI2C::home();
+}
+
+void LCDI2C_UTF8::setCursor(uint8_t col, uint8_t row) {
+  if (row >= rowNum) row %= rowNum;
+  cursorColumn = col; cursorRow = row;
+  nextWordEndCol = checkNextWordCol;
+  LCDI2C::setCursor(col, row);
+}
+
+void LCDI2C_UTF8::setLongestWordLength(uint8_t longest_wordlength) {
+  longestWordLength = longest_wordlength;
+  if (longestWordLength == 0 || longestWordLength > colNum)
+    checkNextWordCol = 0;       // check next word from first column
+  else
+    checkNextWordCol = colNum - longestWordLength;
+}
+
+// Enable or disable auto new line (default = true)
+void LCDI2C_UTF8::setAutoNewLine(bool stat = true) {
+  autoNewLine = stat;
+}
+
+void LCDI2C_UTF8::newLine() {
+  cursorColumn = 0;
+  cursorRow = ++cursorRow % rowNum;
+  nextWordEndCol = checkNextWordCol;
+  LCDI2C::setCursor(cursorColumn, cursorRow);
+}
+
 // Get byte number of the UTF8 codes in text reperenting the letter
 uint8_t LCDI2C_UTF8::getUTF8ByteNum(const byte text[]) {
   if (text[0] < 0x80) return 1;
@@ -215,60 +273,88 @@ size_t LCDI2C_UTF8::println(void) {
   return 0;
 }
 
-void LCDI2C_UTF8::newLine() {
-  cursorColumn = 0;
-  cursorRow = ++cursorRow % rowNum;
-  nextWordEndCol = checkNextWordCol;
-  LCDI2C::setCursor(cursorColumn, cursorRow);
+size_t LCDI2C_UTF8::print(char c) {
+  char str[2] = {c, '\0'};
+  return print(str);
 }
 
-void LCDI2C_UTF8::clear() {
-  if (customizedLanguage != NULL)
-    customizedLanguage->clearLetters(); // Clear customized characters
-  cursorColumn = 0; cursorRow = 0;
-  nextWordEndCol = checkNextWordCol;
-  LCDI2C::clear();
+size_t LCDI2C_UTF8::print(unsigned char b, int base) {
+  return print((unsigned long) b, base);
 }
 
-void LCDI2C_UTF8::home() {
-  cursorColumn = 0; cursorRow = 0;
-  nextWordEndCol = checkNextWordCol;
-  LCDI2C::home();
+size_t LCDI2C_UTF8::print(int n, int base) {
+  return print((long) n, base);
 }
 
-void LCDI2C_UTF8::setCursor(uint8_t col, uint8_t row) {
-  if (row >= rowNum) row %= rowNum;
-  cursorColumn = col; cursorRow = row;
-  nextWordEndCol = checkNextWordCol;
-  LCDI2C::setCursor(col, row);
+size_t LCDI2C_UTF8::print(unsigned int n, int base) {
+  return print((unsigned long) n, base);
 }
 
-void LCDI2C_UTF8::setLongestWordLength(uint8_t longest_wordlength) {
-  longestWordLength = longest_wordlength;
-  if (longestWordLength == 0 || longestWordLength > colNum)
-    checkNextWordCol = 0;       // check next word from first column
-  else
-    checkNextWordCol = colNum - longestWordLength;
+size_t LCDI2C_UTF8::print(long n, int base) {
+  size_t len = Print::print(n, base);
+
+  cursorColumn += len;
+  if (autoNewLine && cursorColumn >= colNum)
+    newLine();
+
+  return len;
 }
 
-// Enable or disable auto new line (default = true)
-void LCDI2C_UTF8::setAutoNewLine(bool stat = true) {
-  autoNewLine = stat;
+size_t LCDI2C_UTF8::print(unsigned long n, int base) {
+  size_t len = Print::print(n, base);
+
+  cursorColumn += len;
+  if (autoNewLine && cursorColumn >= colNum)
+    newLine();
+
+  return len;
 }
 
-void LCDI2C_UTF8::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
-  colNum = cols;
-  rowNum = lines;
-  if (longestWordLength == 0 || longestWordLength > colNum)
-    checkNextWordCol = 0;       // check next word from first column
-  else
-    checkNextWordCol = colNum - longestWordLength;
-  LCDI2C::begin(cols, lines, dotsize);
+size_t LCDI2C_UTF8::print(double n, int digits) {
+  size_t len = Print::print(n, digits);
+
+  cursorColumn += len;
+  if (autoNewLine && cursorColumn >= colNum)
+    newLine();
+
+  return len;
 }
 
-LCDI2C_UTF8::LCDI2C_UTF8(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows)
-  : LCDI2C(lcd_addr, lcd_cols, lcd_rows),
-  colNum(lcd_cols), rowNum(lcd_rows),
-  cursorColumn(0), cursorRow(0), nextWordEndCol(0),
-  minExcludedChar(0), maxExcludedChar(0),
-  longestWordLength(0), autoNewLine(true), customizedLanguage(NULL) {}
+size_t LCDI2C_UTF8::println(char c) {
+  size_t len = print(c);
+  newLine();
+  return len;
+}
+
+size_t LCDI2C_UTF8::println(unsigned char b, int base) {
+  return println((unsigned long) b, base);
+}
+
+size_t LCDI2C_UTF8::println(int n, int base) {
+  return println((long) n, base);
+}
+
+size_t LCDI2C_UTF8::println(unsigned int n, int base) {
+  return println((unsigned long) n, base);
+}
+
+size_t LCDI2C_UTF8::println(long n, int base) {
+  size_t len = Print::print(n, base);
+  newLine();
+
+  return len;
+}
+
+size_t LCDI2C_UTF8::println(unsigned long n, int base) {
+  size_t len = Print::print(n, base);
+  newLine();
+
+  return len;
+}
+
+size_t LCDI2C_UTF8::println(double n, int digits) {
+  size_t len = Print::print(n, digits);
+  newLine();
+
+  return len;
+}
