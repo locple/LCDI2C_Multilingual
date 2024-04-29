@@ -170,5 +170,5 @@ There are three cases:
 > If no room in the screen to print more, wait **nsec** seconds for audiences to read before clearing to print the next part.
 
 ## Not yet support
-- Autoscroll
+- Autoscroll, __FlashStringHelper, Printable
 - Printing Hebrew on Hebrew ROM!!
