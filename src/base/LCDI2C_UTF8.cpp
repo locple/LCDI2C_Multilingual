@@ -292,30 +292,21 @@ size_t LCDI2C_UTF8::print(unsigned int n, int base) {
 
 size_t LCDI2C_UTF8::print(long n, int base) {
   size_t len = Print::print(n, base);
-
   cursorColumn += len;
-  if (autoNewLine && cursorColumn >= colNum)
-    newLine();
 
   return len;
 }
 
 size_t LCDI2C_UTF8::print(unsigned long n, int base) {
   size_t len = Print::print(n, base);
-
   cursorColumn += len;
-  if (autoNewLine && cursorColumn >= colNum)
-    newLine();
 
   return len;
 }
 
 size_t LCDI2C_UTF8::print(double n, int digits) {
   size_t len = Print::print(n, digits);
-
   cursorColumn += len;
-  if (autoNewLine && cursorColumn >= colNum)
-    newLine();
 
   return len;
 }
