@@ -34,4 +34,4 @@ public:
   }
 };
 
-#endif LCDI2C_Katakana_Symbols_h
+#endif // LCDI2C_Katakana_Symbols_h

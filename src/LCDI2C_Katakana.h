@@ -87,4 +87,4 @@ protected:
 
 typedef LCDI2C_Katakana LiquidCrystal_I2C_Katakana;
 
-#endif LCDI2C_Katakana_h
+#endif // LCDI2C_Katakana_h

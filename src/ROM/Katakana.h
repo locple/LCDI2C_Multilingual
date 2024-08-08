@@ -162,4 +162,4 @@ ROMCharacterType KanaROMLetters [KanaROMLetterNum] = {
   {0x00F7, 0xFD}*/    // ÷ Division
 };
 
-#endif ROM_Katakana_h
+#endif // ROM_Katakana_h

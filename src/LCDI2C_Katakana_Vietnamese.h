@@ -35,4 +35,4 @@ public:
   }
 };
 
-#endif LCDI2C_Katakana_Vietnamese_h
+#endif // LCDI2C_Katakana_Vietnamese_h
