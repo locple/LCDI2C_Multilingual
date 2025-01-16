@@ -1,12 +1,13 @@
 //// Original class: LiquidCrystal_I2C was renamed to LCDI2C
 //// to avoid conflict with existing library LiquidCrystal_I2C
-//YWROBOT
+// YWROBOT
 #ifndef LCDI2C_h
 #define LCDI2C_h
 
-#include <inttypes.h>
-#include "Print.h" 
+#include "Print.h"
 #include <Wire.h>
+#include <stdint.h>
+
 
 // commands
 #define LCD_CLEARDISPLAY 0x01
@@ -50,14 +51,14 @@
 #define LCD_BACKLIGHT 0x08
 #define LCD_NOBACKLIGHT 0x00
 
-#define En B00000100  // Enable bit
-#define Rw B00000010  // Read/Write bit
-#define Rs B00000001  // Register select bit
+#define En 0x04 // Enable bit
+#define Rw 0x02 // Read/Write bit
+#define Rs 0x01 // Register select bit
 
 class LCDI2C : public Print {
 public:
-  LCDI2C(uint8_t lcd_Addr,uint8_t lcd_cols,uint8_t lcd_rows);
-  void begin(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS );
+  LCDI2C(uint8_t lcd_Addr, uint8_t lcd_cols, uint8_t lcd_rows);
+  void begin(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
   void clear();
   void home();
   void noDisplay();
@@ -77,9 +78,9 @@ public:
   void noBacklight();
   void backlight();
   void autoscroll();
-  void noAutoscroll(); 
+  void noAutoscroll();
   void createChar(uint8_t, uint8_t[]);
-  void setCursor(uint8_t, uint8_t); 
+  void setCursor(uint8_t, uint8_t);
 #if defined(ARDUINO) && ARDUINO >= 100
   virtual size_t write(uint8_t);
 #else
@@ -88,26 +89,28 @@ public:
   void command(uint8_t);
   void init();
 
-////compatibility API function aliases
-void blink_on();						// alias for blink()
-void blink_off();       					// alias for noBlink()
-void cursor_on();      	 					// alias for cursor()
-void cursor_off();      					// alias for noCursor()
-void setBacklight(uint8_t new_val);				// alias for backlight() and nobacklight()
-void load_custom_character(uint8_t char_num, uint8_t *rows);	// alias for createChar()
-void printstr(const char[]);
+  ////compatibility API function aliases
+  void blink_on();                    // alias for blink()
+  void blink_off();                   // alias for noBlink()
+  void cursor_on();                   // alias for cursor()
+  void cursor_off();                  // alias for noCursor()
+  void setBacklight(uint8_t new_val); // alias for backlight() and nobacklight()
+  void load_custom_character(uint8_t char_num,
+                             uint8_t *rows); // alias for createChar()
+  void printstr(const char[]);
 
-////Unsupported API functions (not implemented in this library)
-uint8_t status();
-void setContrast(uint8_t new_val);
-uint8_t keypad();
-void setDelay(int,int);
-void on();
-void off();
-uint8_t init_bargraph(uint8_t graphtype);
-void draw_horizontal_graph(uint8_t row, uint8_t column, uint8_t len,  uint8_t pixel_col_end);
-void draw_vertical_graph(uint8_t row, uint8_t column, uint8_t len,  uint8_t pixel_col_end);
-	 
+  ////Unsupported API functions (not implemented in this library)
+  uint8_t status();
+  void setContrast(uint8_t new_val);
+  uint8_t keypad();
+  void setDelay(int, int);
+  void on();
+  void off();
+  uint8_t init_bargraph(uint8_t graphtype);
+  void draw_horizontal_graph(uint8_t row, uint8_t column, uint8_t len,
+                             uint8_t pixel_col_end);
+  void draw_vertical_graph(uint8_t row, uint8_t column, uint8_t len,
+                           uint8_t pixel_col_end);
 
 private:
   void init_priv();
@@ -125,4 +128,4 @@ private:
   uint8_t _backlightval;
 };
 
-#endif
+#endif // LCDI2C_h

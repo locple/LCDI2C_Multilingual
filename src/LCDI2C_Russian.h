@@ -24,13 +24,13 @@
 class LCDI2C_Russian : public LCDI2C_UTF8 {
 public:
   LCDI2C_Russian(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows)
-  : LCDI2C_UTF8(lcd_addr, lcd_cols, lcd_rows) {
+      : LCDI2C_UTF8(lcd_addr, lcd_cols, lcd_rows) {
     ROMLetterNum = RussianROMLetterNum;
-	ROMLetters = RussianROMLetters;
-	setLongestWordLength(10);
+    ROMLetters = RussianROMLetters;
+    setLongestWordLength(10);
   }
 };
 
 typedef LCDI2C_Russian LiquidCrystal_I2C_Russian;
 
-#endif  // LCDI2C_Russian_h
+#endif // LCDI2C_Russian_h

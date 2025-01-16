@@ -1,6 +1,7 @@
 /*
   ** CustomizedLanguage class **
-  Base class for adding customizied characters in UTF8 (NFC normalized) encoding.
+  Base class for adding customizied characters in UTF8 (NFC normalized)
+  encoding.
 
   ** Credentials **
   Author:  Loc P. Le <phuocloc@gmail.com>
@@ -13,28 +14,31 @@
 #ifndef LCDI2C_Custom_h
 #define LCDI2C_Custom_h
 
+#include <stdint.h>
+
 #include "LCDI2C_Types.h"
 #include "LCDI2C_UTF8.h"
 
 class CustomizedLanguage {
 public:
-  CustomizedLanguage(LCDI2C_UTF8* lcd) : screen(lcd) {}
+  CustomizedLanguage(LCDI2C_UTF8 *lcd) : screen(lcd) {}
 
   uint8_t getCharacter(uint16_t code, uint8_t col, uint8_t row) {
     uint8_t idx, ord;
 
-	idx = getLetterIndex(code);
-    if (idx == NOTFOUND) return NOTFOUND;
+    idx = getLetterIndex(code);
+    if (idx == NOTFOUND)
+      return NOTFOUND;
 
     // Declared unicode letter
     ord = getCGRAMLetterOrder(idx);
-    if (ord == NOTFOUND) {                  // None exists in CGRAM
-      if (cgramLettersNum < CGRAM_SIZE) {   // Run out of CGRAM?
-        ord = createLetter(idx);            // No -> Create a new letter in CGRAM
+    if (ord == NOTFOUND) {                // None exists in CGRAM
+      if (cgramLettersNum < CGRAM_SIZE) { // Run out of CGRAM?
+        ord = createLetter(idx);          // No -> Create a new letter in CGRAM
         // Fix wrong cursor moving when creating custom character
         screen->setCursor(col, row);
-      } else                                // Yes -> Replace with alternative letter
-        ord = (uint8_t) getAlternativeLetter(CustomLetters[idx].code);
+      } else // Yes -> Replace with alternative letter
+        ord = (uint8_t)getAlternativeLetter(CustomLetters[idx].code);
     }
     return ord;
   }
@@ -52,10 +56,10 @@ protected:
     memset(dst, 0, 8);
     for (uint8_t i = 0; i < 8; i++) {
       for (uint8_t j = 0; j < 5; j++) {
-    	  element = ((src[j] & mask) << i) >> j + 3;
-   		  dst[i] |= element;
+        element = ((src[j] & mask) << i) >> (j + 3);
+        dst[i] |= element;
       }
-  	  mask >>= 1;
+      mask >>= 1;
     }
   }
 
@@ -74,31 +78,37 @@ protected:
   // Return index of letter "c" referencing to "CustomizedLetters"
   uint8_t getLetterIndex(uint16_t c) {
     for (int idx = 0; idx < CustomLetterNum; idx++)
-      if (CustomLetters[idx].code == c) return idx;
+      if (CustomLetters[idx].code == c)
+        return idx;
     return NOTFOUND;
   }
 
   // Check the existing of a letter index in CGRAM
   uint8_t getCGRAMLetterOrder(uint8_t idx) {
     for (uint8_t ord = 0; ord < cgramLettersNum; ord++)
-      if (cgramLetters[ord] == idx) return ord;
+      if (cgramLetters[ord] == idx)
+        return ord;
     return NOTFOUND;
   }
 
-  virtual  uint8_t    getAlternativeLetter(uint16_t c) {  // Each language may implements its own getAlternativeLetter()
-    return uint8_t(c);   // Default implementation
+  virtual uint8_t
+  getAlternativeLetter(uint16_t c) { // Each language may implements its own
+                                     // getAlternativeLetter()
+    return uint8_t(c);               // Default implementation
   }
 
-  uint8_t   getLongestWordLength() { return longestWordLength; }
+  uint8_t getLongestWordLength() { return longestWordLength; }
 
-  uint8_t   CustomLetterNum;              // Size of customized letter map
-  CustomCharacterType* CustomLetters;     // Link to customized letter map
-  LCDI2C_UTF8* screen;
-  uint8_t   cgramLetters[CGRAM_SIZE] = {  // Indexes of Vietnamese letters in use in CGRAM. NOTFOUND: unallocated
-            NOTFOUND, NOTFOUND, NOTFOUND, NOTFOUND, NOTFOUND, NOTFOUND, NOTFOUND, NOTFOUND};  // Change this with CGRAM_SIZE
-  uint8_t   charmap[8];                   // Template used by createChar()
-  uint8_t   longestWordLength; 
-  uint8_t   cgramLettersNum = 0;          // Number of elements of cgramLetters
-}; // CustomizedLanguage
+  uint8_t CustomLetterNum;            // Size of customized letter map
+  CustomCharacterType *CustomLetters; // Link to customized letter map
+  LCDI2C_UTF8 *screen;
+  uint8_t cgramLetters[CGRAM_SIZE] =
+      { // Indexes of Vietnamese letters in use in CGRAM. NOTFOUND: unallocated
+          NOTFOUND, NOTFOUND, NOTFOUND, NOTFOUND, NOTFOUND,
+          NOTFOUND, NOTFOUND, NOTFOUND}; // Change this with CGRAM_SIZE
+  uint8_t charmap[8];                    // Template used by createChar()
+  uint8_t longestWordLength;
+  uint8_t cgramLettersNum = 0; // Number of elements of cgramLetters
+};                             // CustomizedLanguage
 
-#endif  // LCDI2C_Custom_h
+#endif // LCDI2C_Custom_h

@@ -26,18 +26,20 @@
 #ifndef LCDI2C_Vietnamese_h
 #define LCDI2C_Vietnamese_h
 
-#include "LCDI2C_Generic.h"
 #include "Custom/Vietnamese.h"
+#include "LCDI2C_Generic.h"
+
 
 class LCDI2C_Vietnamese : public LCDI2C_Generic {
 public:
   LCDI2C_Vietnamese(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows)
-  : LCDI2C_Generic(lcd_addr, lcd_cols, lcd_rows) {
-	setLongestWordLength(7);
-	customizedLanguage = new CustomizedVietnamese(static_cast<LCDI2C_UTF8*>(this));
+      : LCDI2C_Generic(lcd_addr, lcd_cols, lcd_rows) {
+    setLongestWordLength(7);
+    customizedLanguage =
+        new CustomizedVietnamese(static_cast<LCDI2C_UTF8 *>(this));
   }
 };
 
 typedef LCDI2C_Vietnamese LCDI2C_Generic_Vietnamese;
 
-#endif  // LCDI2C_Vietnamese_h
+#endif // LCDI2C_Vietnamese_h
