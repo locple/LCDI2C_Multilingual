@@ -29,10 +29,10 @@
 class LCDI2C_Generic : public LCDI2C_UTF8 {
 public:
   LCDI2C_Generic(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows)
-  : LCDI2C_UTF8(lcd_addr, lcd_cols, lcd_rows) {
+      : LCDI2C_UTF8(lcd_addr, lcd_cols, lcd_rows) {
     ROMLetterNum = GenericROMLetterNum;
-	ROMLetters = GenericROMLetters;
-	setLongestWordLength(10);
+    ROMLetters = GenericROMLetters;
+    setLongestWordLength(10);
   }
 };
 

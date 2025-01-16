@@ -20,15 +20,17 @@
 #ifndef LCDI2C_Latin_Symbols_h
 #define LCDI2C_Latin_Symbols_h
 
-#include "LCDI2C_Latin.h"
 #include "Custom/Symbols.h"
+#include "LCDI2C_Latin.h"
+
 
 class LCDI2C_Latin_Symbols : public LCDI2C_Latin {
 public:
   LCDI2C_Latin_Symbols(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows)
-  : LCDI2C_Latin(lcd_addr, lcd_cols, lcd_rows) {
-	customizedLanguage = new CustomizedSymbols(static_cast<LCDI2C_UTF8*>(this));
+      : LCDI2C_Latin(lcd_addr, lcd_cols, lcd_rows) {
+    customizedLanguage =
+        new CustomizedSymbols(static_cast<LCDI2C_UTF8 *>(this));
   }
 };
 
-#endif  // LCDI2C_Latin_Symbols_h
+#endif // LCDI2C_Latin_Symbols_h

@@ -23,15 +23,17 @@
 #ifndef LCDI2C_Katakana_Symbols_h
 #define LCDI2C_Katakana_Symbols_h
 
-#include "LCDI2C_Katakana.h"
 #include "Custom/Symbols.h"
+#include "LCDI2C_Katakana.h"
+
 
 class LCDI2C_Katakana_Symbols : public LCDI2C_Katakana {
 public:
   LCDI2C_Katakana_Symbols(uint8_t lcd_addr, uint8_t lcd_cols, uint8_t lcd_rows)
-  : LCDI2C_Katakana(lcd_addr, lcd_cols, lcd_rows) {
-	customizedLanguage = new CustomizedSymbols(static_cast<LCDI2C_UTF8*>(this));
+      : LCDI2C_Katakana(lcd_addr, lcd_cols, lcd_rows) {
+    customizedLanguage =
+        new CustomizedSymbols(static_cast<LCDI2C_UTF8 *>(this));
   }
 };
 
-#endif LCDI2C_Katakana_Symbols_h
+#endif // LCDI2C_Katakana_Symbols_h
